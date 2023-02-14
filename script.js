@@ -7,13 +7,17 @@ function soundCheck(audio) {
 function playSound(e) {
   const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
   const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-  soundCheck(audio);
-  key.classList.add('playing')
+  if (!audio) return;
+  audio.currentTime = 0;
+  audio.play();
+  key.classList.add('playing');
 }
 
 function playSoundButton(button) {
   const audio = document.querySelector(`audio[data-key="${button.getAttribute('data-key')}"]`);
-  soundCheck(audio);
+  if (!audio) return;
+  audio.currentTime = 0;
+  audio.play();
   button.classList.add('playing');
   button.blur();
 }
